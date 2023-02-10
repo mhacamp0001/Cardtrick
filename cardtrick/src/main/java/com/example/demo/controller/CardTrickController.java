@@ -57,7 +57,10 @@ public class CardTrickController {
     ModelAndView mv = new ModelAndView();
     mv.setViewName("cardtrick");
     Card selectedCard = cardTrickService.drawCard(deck);
+    deck.getDeck().remove(selectedCard);
     mv.addObject("selectedCard", selectedCard);
+    mv.addObject("deck", deck.getDeck());
+
     return mv;
   }
 
@@ -66,9 +69,19 @@ public class CardTrickController {
     ModelAndView mv = new ModelAndView();
     System.out.println("RANK: " + rank + "SUIT: " + suit);
     mv.setViewName("cardtrick");
+    cardTrickService.markCardAndReturnToDeck(deck, rank, suit);
     mv.addObject("deck", deck.getDeck());
     return mv;
 
+  }
+
+  @GetMapping("/findCard")
+  public ModelAndView findCard() {
+    ModelAndView mv = new ModelAndView();
+    mv.setViewName("cardtrick");
+    Card finalCard = cardTrickService.findCard(deck);
+    mv.addObject("finalCard", finalCard);
+    return mv;
   }
 
   @RequestMapping("/")
