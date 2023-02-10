@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf8">
+<head>
+    <title>Card Trick</title>
+    <link href="css/custom.css"
+        rel="stylesheet">
+
+</head>
+<body>
+<div class="container my-2" align="center">
+ 
+<h3>The Coding Card Trick</h3>
+
+  <div th:if="${deck}">
+<form action="/shuffle" th:object="${deck}" method="POST">
+
+           <input id="first_name3" type="text" name="firstName3" th:value="${deck}" maxlength=31 required>
+     <input type="submit" class="btn btn-primary" value="Shuffle Deck">
+   </form>
+</div>
+  <div th:if="${selectedCard != null}">
+
+  <form method="post" action="/return">
+	<input autofocus type="text" name="rank" id="rank" 
+ th:value="${selectedCard.rank}" required>
+  <input autofocus type="text" name="suit" id="suit" 
+ th:value="${selectedCard.suit}" required>
+	<button>Return Card</button>
+</form>
+  </div>
+  <div th:if="${shuffledDeck}">
+  shuffledDeck is here
+            </table>
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th>Employee First Name</th>
+                        <th>Employee Last Name</th>
+                        <th>Employee Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+  <tr th:each="card : ${shuffledDeck}">
+ <td th:text="${card.suit}"></td>
+ <td th:text="${card.rank}"></td>
+</tr>
+                            </tbody>
+            </table>
+  </div>
+
+    <div th:if="${selectedCard}">
+  selectedCard is here
+            </table>
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th>Employee First Name</th>
+                        <th>Employee Last Name</th>
+                        <th>Employee Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+ <td th:text="${selectedCard.rank}"></td>
+ <td th:text="${selectedCard.suit}"></td>
+</tr>
+                            </tbody>
+            </table>
+    </div>
+
+  
+  <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr>
+                        <td>    
+                          <a class="btn btn-warning" href="/deck">New Deck</a>
+                        </td>
+                        <td>text</td>
+                    </tr>
+                    <tr>
+                        <td>    
+                          <a class="btn btn-warning" href="/shuffle">Shuffle Deck</a>
+                        </td>
+                        <td>10/12/2017</td>
+                    </tr>
+                    <tr>
+                        <td>    
+                          <a class="btn btn-warning" href="/draw">Pick a Card</a>
+
+                        </td>
+                        <td>10/12/2017</td>
+<!--                     </tr>
+                                 <tr th:if="${selectedCard != null}">
+                        <td>    
+                          <a class="btn btn-warning" th:href="@{/return/{suit}(suit=${selectedCard.suit})/{rank}(rank=${selectedCard.rank})}">Return Card</a>
+
+                        </td>
+                        <td>10/12/2017</td>
+                    </tr> -->
+            </tbody>
+        </table>
+           <table class="table">
+                <thead>
+                    <tr>
+                        <th>Employee First Name</th>
+                        <th>Employee Last Name</th>
+                        <th>Employee Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+  <tr th:each="card : ${deck}">
+ <td th:text="${card.suit}"></td>
+ <td th:text="${card.rank}"></td>
+</tr>
+                            </tbody>
+            </table>
+
+  
+</div>
+</body>
+</html>

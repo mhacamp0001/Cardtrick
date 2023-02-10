@@ -1,0 +1,20 @@
+{
+  "files": {
+    "cardtrick/src/main/java/com/example/demo/controller/CardTrickController.java": [
+      {
+        "id": "8dd0ed3c-ea9b-4b90-beac-b65e22353693",
+        "line": 50,
+        "version": 946,
+        "index": 1623
+      }
+    ],
+    "cardtrick/src/main/java/com/example/demo/service/CardTrickService.java": [
+      {
+        "id": "210774d7-85d5-4271-a019-1e6a36bf4d6c",
+        "line": 34,
+        "version": 68,
+        "index": 731
+      }
+    ]
+  }
+}
