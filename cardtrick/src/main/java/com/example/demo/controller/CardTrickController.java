@@ -71,6 +71,8 @@ public class CardTrickController {
     mv.setViewName("cardtrick");
     cardTrickService.markCardAndReturnToDeck(deck, rank, suit);
     mv.addObject("deck", deck.getDeck());
+    mv.addObject("isReturned", true);
+
     return mv;
 
   }
@@ -81,6 +83,7 @@ public class CardTrickController {
     mv.setViewName("cardtrick");
     Card finalCard = cardTrickService.findCard(deck);
     mv.addObject("finalCard", finalCard);
+    mv.addObject("isReturned", true);
     return mv;
   }
 
