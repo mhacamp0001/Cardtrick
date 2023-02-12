@@ -43,12 +43,15 @@ public class CardTrickController {
     return mv;
   }
 
-  @GetMapping("/shuffle")
-  public ModelAndView shuffle() {
-   ModelAndView mv = new ModelAndView();
-   mv.setViewName("cardtrick");
-   Deck shuffledDeck = cardTrickService.shuffleDeck(deck);
-   mv.addObject("shuffledDeck", deck.getDeck());
+  @PostMapping("/shuffle")
+  public ModelAndView shuffle(String cardReturned) {
+    ModelAndView mv = new ModelAndView();
+    System.out.println("cardReturned: " + cardReturned);
+    mv.setViewName("cardtrick");
+    Deck shuffledDeck = cardTrickService.shuffleDeck(deck);
+    mv.addObject("shuffledDeck", deck.getDeck());
+    mv.addObject("isReturned", Boolean.valueOf(cardReturned));
+
    return mv;
   }
 

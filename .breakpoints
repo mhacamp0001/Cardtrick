@@ -3,9 +3,9 @@
     "cardtrick/src/main/java/com/example/demo/controller/CardTrickController.java": [
       {
         "id": "8dd0ed3c-ea9b-4b90-beac-b65e22353693",
-        "line": 50,
-        "version": 1175,
-        "index": 1623
+        "line": 51,
+        "version": 1509,
+        "index": 1699
       }
     ],
     "cardtrick/src/main/java/com/example/demo/service/CardTrickService.java": [

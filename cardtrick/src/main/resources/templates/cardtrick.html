@@ -47,8 +47,9 @@
 
                 <div class="group" id="shuffled-deck">
                   <h3>Shuffled Cards</h3>
-                    <div th:if="${deck}">
-                      <form method="get" action="/shuffle">
+                    <div th:if="${deck} and ${selectedCard} == null">
+                      <form method="post" action="/shuffle">
+                       <input type="hidden" name="cardReturned" id="cardReturned" th:value="${isReturned}">
                         <button>Shuffle</button>
                       </form>
                     </div>
@@ -56,12 +57,12 @@
 
                 <div class="group" id="picked-card">
                   <h3>Card Selection</h3>
-                    <div th:if="${shuffledDeck}">
+                    <div th:if=                     "${shuffledDeck} and ${!isReturned}">
                       <form method="get" action="/draw">
                         <button>Pick Card</button>
                       </form>
                     </div>
-                    <div th:if="${selectedCard != null}">
+                    <div th:if="${selectedCard} != null">
                       <div th:text="${selectedCard.rank}"></div>
                       <div th:text="${selectedCard.suit}"></div>
                     </div>
@@ -69,7 +70,7 @@
 
                 <div class="group" id="return-card">
                   <h3>Return Card</h3>
-                    <div th:if="${selectedCard != null}">
+                    <div th:if="${selectedCard} != null">
                       <form method="post" action="/return">
 	                      <input type="hidden" name="rank" id="rank" th:value="${selectedCard.rank}">
                         <input type="hidden" name="suit" id="suit" th:value="${selectedCard.suit}">
@@ -80,25 +81,29 @@
                 <div class="group" id="final-card">
                     <div th:if="${isReturned}">
                       <form method="get" action="/findCard">
-                        <div th:if="${finalCard != null}">
+                        <div th:if="${finalCard} != null">
                           <div th:text="${finalCard.rank}"></div>
                           <div th:text="${finalCard.suit}"></div>
                         </div>
 	                      <h3>Your Card</h3>
-                        <button>Reveal Card</button>
+                        <div th:if="${finalCard} == null">
+                          <button>Reveal Card</button>
+                        </div>
                       </form>
                     </div>
                 </div>
               </div>
         </div>
 
-  <div th:if="${finalCard != null}">
+  <div th:if="${finalCard} != null">
   finalCard is here
 <div th:text="${finalCard.rank}"></div>
  <div th:text="${finalCard.suit}"></div>
 </div>
 
   <div th:if="${shuffledDeck}">
+    <div th:text="${isReturned}"></div>
+
   shuffledDeck is here
             </table>
            <table class="table">
