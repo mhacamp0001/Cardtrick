@@ -109,17 +109,16 @@
            <table class="table">
                 <thead>
                     <tr>
-                        <th>Employee First Name</th>
-                        <th>Employee Last Name</th>
-                        <th>Employee Email</th>
+                        <th>Suit</th>
+                        <th>Value</th>
                     </tr>
                 </thead>
                 <tbody>
-  <tr th:each="card : ${shuffledDeck}">
- <td th:text="${card.suit}"></td>
- <td th:text="${card.rank}"></td>
-</tr>
-                            </tbody>
+                    <tr th:each="card : ${shuffledDeck}">
+                      <td th:text="${card.suit}"></td>
+                      <td th:text="${card.rank}"></td>
+                    </tr>
+                </tbody>
             </table>
   </div>
 
@@ -129,9 +128,8 @@
            <table class="table">
                 <thead>
                     <tr>
-                        <th>Employee First Name</th>
-                        <th>Employee Last Name</th>
-                        <th>Employee Email</th>
+                        <th>Suit</th>
+                        <th>Value</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -143,52 +141,14 @@
     </div>
 
   
-  <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Action</th>
-                    <th>Result</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr>
-                        <td>    
-                          <a class="btn btn-warning" href="/deck">New Deck</a>
-                        </td>
-                        <td>text</td>
-                    </tr>
-                    <tr>
-                        <td>    
-                          <a class="btn btn-warning" href="/shuffle">Shuffle Deck</a>
-                        </td>
-                        <td>10/12/2017</td>
-                    </tr>
-                    <tr>
-                        <td>    
-                          <a class="btn btn-warning" href="/draw">Pick a Card</a>
+  
 
-                        </td>
-                        <td>10/12/2017</td>
-                        <a class="btn btn-warning" href="/findCard">Find Card</a>
-
-                        </td>
-                        <td>10/12/2017</td>
-<!--                     </tr>
-                                 <tr th:if="${selectedCard != null}">
-                        <td>    
-                          <a class="btn btn-warning" th:href="@{/return/{suit}(suit=${selectedCard.suit})/{rank}(rank=${selectedCard.rank})}">Return Card</a>
-
-                        </td>
-                        <td>10/12/2017</td>
-                    </tr> -->
-            </tbody>
-        </table>
+           
            <table class="table">
                 <thead>
                     <tr>
-                        <th>Employee First Name</th>
-                        <th>Employee Last Name</th>
-                        <th>Employee Email</th>
+                        <th>Suit</th>
+                        <th>Value</th>
                     </tr>
                 </thead>
                 <tbody>
