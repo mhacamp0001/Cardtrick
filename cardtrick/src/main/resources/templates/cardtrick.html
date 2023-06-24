@@ -1,164 +1,164 @@
-
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <meta charset="utf8">
+
 <head>
-    <title>Card Trick</title>
-    <link href="css/custom.css"
-        rel="stylesheet">
-
+	<title>Card Trick</title>
+	<link href="css/custom.css" rel="stylesheet">
+	<script type="text/javascript" src="js/custom.js"></script>
 </head>
+
 <body>
-        <div id="masthead">
-            <div id="logo">
-                <a href="#">The Coding Card Trick</a>
-            </div>
+	<div id="page">
+		<div id="logo">
+			<a href="#">The Coding Card Trick</a>
+		</div>
 
-            <div id="navbar">
+		<div id="navbar">
+			<ul id="nav-list">
+				<li class="nav-link">
+					<a href="#">Home</a>
+				</li>
+				<li class="nav-link">
+					<a href="#">About</a>
+				</li>
+				<li class="nav-link">
+					<a href="#">Contact</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="content">
+		<div id="displayDeck"></div>
 
-                <ul id="nav-list">
-                    <li class="nav-link">
-                        <a href="#">Home</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">About</a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
+		<div id="header-statement">
+			<h2>Welcome to The Coding Card Trick</h2>
+		</div>
 
-        </div>
-        <div id="content">
-            <div id="hero"></div>
+		<div id="groups" class="page-row">
+			<div class="group" id="new-deck">
+				<h3>New Deck</h3>
+				<form method="get" action="/deck">
+					<button>Get Deck</button>
+				</form>
+			</div>
 
-            <div id="header-statement">
-                <h2>Welcome to The Coding Card Trick</h2>
-            </div>
+			<div class="group" id="shuffled-deck">
+				<h3>Shuffle Cards</h3>
+				<div th:if="${deck} and ${selectedCard} == null">
+					<form method="post" action="/shuffle">
+						<input type="hidden" name="cardReturned" id="cardReturned" th:value="${isReturned}">
+						<button>Shuffle</button>
+					</form>
+				</div>
+			</div>
 
-              <div id="groups" class="page-row">
-                <div class="group" id="new-deck">
-                  <h3>New Deck</h3>
-                    <form method="get" action="/deck">
-                      <button>Get Deck</button>
-                    </form>
-                </div>
+			<div class="group" id="picked-card">
+				<h3>Card Selection</h3>
+				<div th:if="${shuffledDeck} and ${!isReturned}">
+					<form method="get" action="/draw">
+						<button>Pick Card</button>
+					</form>
+				</div>
+				<div th:if="${selectedCard} != null">
+					<div th:text="${selectedCard.rank}"></div>
+					<div th:text="${selectedCard.suit}"></div>
+				</div>
+			</div>
 
-                <div class="group" id="shuffled-deck">
-                  <h3>Shuffled Cards</h3>
-                    <div th:if="${deck} and ${selectedCard} == null">
-                      <form method="post" action="/shuffle">
-                       <input type="hidden" name="cardReturned" id="cardReturned" th:value="${isReturned}">
-                        <button>Shuffle</button>
-                      </form>
-                    </div>
-                </div>
+			<div class="group" id="return-card">
+				<h3>Return Card</h3>
+				<div th:if="${selectedCard} != null">
+					<form method="post" action="/return">
+						<input type="hidden" name="rank" id="rank" th:value="${selectedCard.rank}">
+						<input type="hidden" name="suit" id="suit" th:value="${selectedCard.suit}">
+						<button>Return Card</button>
+					</form>
+				</div>
+			</div>
+			<div class="group" id="final-card">
+				<div th:if="${isReturned}">
+					<form method="get" action="/findCard">
+						<div th:if="${finalCard} != null">
+							<div th:text="${finalCard.rank}"></div>
+							<div th:text="${finalCard.suit}"></div>
+						</div>
+						<h3>Your Card</h3>
+						<div th:if="${finalCard} == null">
+							<button>Reveal Card</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<fieldset>
+		<legend>The Developer View</legend>
+		<div>
+			<input type="checkbox" id=devViewCheckbox name="devViewCheckbox" onclick="showDeck()" />
+			<label for="devViewCheckbox">See Deck</label>
+		</div>
+	
+		<div id="devView" style="display:none">
+			<br>
+			
+			<div th:if="${selectedCard}">
+				Selected Card
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Suit</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<td th:text="${selectedCard.suit}"></td>
+						<td th:text="${selectedCard.rank}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+			
+			<div th:if="${deck}">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Suit</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="card : ${deck}">
+							<td th:text="${card.suit}"></td>
+							<td th:text="${card.rank}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	
+			<div th:if="${shuffledDeck}">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Suit</th>
+							<th>Value</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="card : ${shuffledDeck}">
+							<td th:text="${card.suit}"></td>
+							<td th:text="${card.rank}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+	
+		</div>
+	</fieldset>
 
-                <div class="group" id="picked-card">
-                  <h3>Card Selection</h3>
-                    <div th:if=                     "${shuffledDeck} and ${!isReturned}">
-                      <form method="get" action="/draw">
-                        <button>Pick Card</button>
-                      </form>
-                    </div>
-                    <div th:if="${selectedCard} != null">
-                      <div th:text="${selectedCard.rank}"></div>
-                      <div th:text="${selectedCard.suit}"></div>
-                    </div>
-                </div>
-
-                <div class="group" id="return-card">
-                  <h3>Return Card</h3>
-                    <div th:if="${selectedCard} != null">
-                      <form method="post" action="/return">
-	                      <input type="hidden" name="rank" id="rank" th:value="${selectedCard.rank}">
-                        <input type="hidden" name="suit" id="suit" th:value="${selectedCard.suit}">
-	                      <button>Return Card</button>
-                      </form>
-                    </div>
-                </div>
-                <div class="group" id="final-card">
-                    <div th:if="${isReturned}">
-                      <form method="get" action="/findCard">
-                        <div th:if="${finalCard} != null">
-                          <div th:text="${finalCard.rank}"></div>
-                          <div th:text="${finalCard.suit}"></div>
-                        </div>
-	                      <h3>Your Card</h3>
-                        <div th:if="${finalCard} == null">
-                          <button>Reveal Card</button>
-                        </div>
-                      </form>
-                    </div>
-                </div>
-              </div>
-        </div>
-
-  <div th:if="${finalCard} != null">
-  finalCard is here
-<div th:text="${finalCard.rank}"></div>
- <div th:text="${finalCard.suit}"></div>
-</div>
-
-  <div th:if="${shuffledDeck}">
-    <div th:text="${isReturned}"></div>
-
-  shuffledDeck is here
-            </table>
-           <table class="table">
-                <thead>
-                    <tr>
-                        <th>Suit</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="card : ${shuffledDeck}">
-                      <td th:text="${card.suit}"></td>
-                      <td th:text="${card.rank}"></td>
-                    </tr>
-                </tbody>
-            </table>
-  </div>
-
-    <div th:if="${selectedCard}">
-  selectedCard is here
-            </table>
-           <table class="table">
-                <thead>
-                    <tr>
-                        <th>Suit</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
- <td th:text="${selectedCard.rank}"></td>
- <td th:text="${selectedCard.suit}"></td>
-</tr>
-                            </tbody>
-            </table>
-    </div>
-
-  
-
-           
-           <table class="table">
-                <thead>
-                    <tr>
-                        <th>Suit</th>
-                        <th>Value</th>
-                    </tr>
-                </thead>
-                <tbody>
-  <tr th:each="card : ${deck}">
- <td th:text="${card.suit}"></td>
- <td th:text="${card.rank}"></td>
-</tr>
-                            </tbody>
-            </table>
-
-        </div>
-</div>
 </body>
+
 </html>

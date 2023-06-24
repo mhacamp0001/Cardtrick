@@ -46,27 +46,13 @@ public class CardTrickService {
   }
 
   public Deck markCardAndReturnToDeck(Deck deck, String rank, String suit) {
-    //     System.out.println("stream on: " 
-    //                    + rank + suit);
-    //   System.out.println("first card: " 
-    //                    + deck.getDeck().get(0).getRank());
-    // Card selectedCard = deck.getDeck().stream()
-    //         .filter(card -> card.getSuit().toString().equalsIgnoreCase(suit))
-    //         .filter(card -> card.getRank().toString().equalsIgnoreCase(rank))
-    //   .findFirst().get();
-
-   // deck.getDeck().remove(selectedCard);
-   // System.out.println("removed card: " + selectedCard.getSuit());
-    Card markedCard = new Card(
+	  Card markedCard = new Card(
       Rank.valueOf(rank), Suit.valueOf(suit), true);
-  //  selectedCard.setMarkedCard(true);
-    deck.getDeck().add(markedCard);
-    System.out.println("added card: " 
+      deck.getDeck().add(markedCard);
+      System.out.println("added card: " 
                        + markedCard.getRank()
                        + markedCard.getSuit()
                        + markedCard.isMarkedCard());
-
-
     return deck;
 
   }
@@ -77,9 +63,8 @@ public class CardTrickService {
 
     System.out.println("final card: " 
                        + finalCard.getRank()
-                      + finalCard.getSuit()
-                      + finalCard.isMarkedCard());
-
+                       + finalCard.getSuit()
+                       + finalCard.isMarkedCard());
 
     return finalCard;
 

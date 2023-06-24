@@ -2,34 +2,27 @@
 
 
 * {
-	box-sizing: border-box;
-	
+	box-sizing: border-box;	
 }
-
 
 body {
 	background: black;
 	color: white;
 	font-family: helvetica;
 	font-size: 16px;
-	
 }
-
 
 h1 {
 	font-size: 32px;
 }
 
-
 h2 {
 	font-size: 28px;
 }
 
-
 #header-statement {
 	text-align: center;
 }
-
 
 .page-row {
 	width: 100%;
@@ -37,8 +30,6 @@ h2 {
 	padding: 5%;
 	margin: 2% 0 2% 0;
 }
-
-
 
 .group {
 	width: 15%;
@@ -51,11 +42,9 @@ h2 {
 	color: black;
 	background-size: contain;
 	background-repeat: no-repeat;
-	
 }
 
-
-#hero {
+#displayDeck {
 	width: 100%;
 	height: 50px;
 	background-size: cover;
@@ -65,44 +54,35 @@ h2 {
 	background-position: center;
 }
 
-
 #new-deck {
 	background-image:url("/images/cards.png");
 }
-
 
 #shuffled-deck {
 	background-image:url("/images/shuffle.png");
 }
 
-
 #picked-card {
 	background-image:url("/images/card.png");
 }
-
 
 #return-card {
 	background-image:url("/images/card.png");
 }
 
-
-#masthead {
+#page {
 	width: 100%;
 	height: 100px;
 	line-height: 100px;
 }
 
-
 #logo {
 	float: left;
 }
 
-
-
 #navbar {
 	float: right;
 }
-
 
 #nav-list {
 	margin: 0;
@@ -110,19 +90,15 @@ h2 {
 	list-style-type: none;
 }
 
-
 .nav-link {
 	display: inline;
 	padding: 5px 15px 5px 15px;
 }
 
-
-
-#masthead a	 {
+#page a	 {
 	text-decoration: none;
 	color: white;
 }	
-
 
 #footer {
 	width: 100%;
@@ -130,53 +106,33 @@ h2 {
 	line-height: 100px;
 }
 
-
-#copyright {
-	float: left;
+.diamonds {
+	background-image:url("/images/diamond.png");
 }
 
+.hearts {
+	background-image:url("/images/heart.png");
+}
+
+.clubs {
+	background-image:url("/images/club.png");
+}
+
+.spades {
+	background-image:url("/images/spade.png");
+}
 
 table {
 	border: 2px black solid;
 	border-collapse: collapse;
-	width: 100%;
-	
+	width: 25%;	
 }
-
-
 
 tr, td, th {
-	border: 2px black solid;
+	border: 2px white solid;
 }
-
 
 th {
 	background: black;
 	color: white;
-}
-
-
-
-#travel-table {
-	color: black;
-	background: white;
-}
-
-
-
-#travel-table h3 {
-	text-align: center;
-}
-
-
-
-#social-links {
-	float: right;
-	padding: 5px 15px 5px 15px;
-}
-
-
-#social-links a {
-	color: white;
-	text-decoration: none;
 }
